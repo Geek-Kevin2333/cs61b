@@ -32,7 +32,10 @@ public class IntList {
     /* NOTE: public IntList () { }  would also work. */
         this(0, null);
     }
-
+    public IntList(IntList A){
+        this.first=A.first;
+        this.rest=A.rest;
+    }
     /**
      * Returns a list equal to L with all elements squared. Destructive.
      */
@@ -82,7 +85,12 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        IntList temp=A;
+        while (temp.rest!=null){
+            temp=temp.rest;
+        }
+        temp.rest=new IntList(B);
+        return A;
     }
 
     /**
@@ -91,8 +99,25 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        IntList ans=new IntList(A.first,null);
+        IntList temp=ans;
+        while(A.rest!=null){
+        temp.rest=new IntList(A.rest.first,null);
+        temp=temp.rest;
+        A=A.rest;
+        }
+
+        while(B!=null){
+            temp.rest=new IntList(B.first,null);
+            temp=temp.rest;
+            B=B.rest;
+        }
+
+
+
+        return ans;
     }
+
 
 
 
