@@ -65,6 +65,17 @@ public class LinkedListDeque <generic> {
         temp.prev=getFirstNode();
     }
 
+    public generic getRecursive(int index){
+        // todo
+        if(size<index+1) return null;
+        return getRecursive(0,index,getFirstNode().next);
+    }
+
+    private generic getRecursive(int pos,int index,IntList x){
+        if(pos==index) return x.value;
+        return getRecursive(pos+1,index,x.next);
+    }
+    
     public void addLast(generic item){
         size++;
         IntList temp=new IntList((item));
@@ -122,7 +133,7 @@ public class LinkedListDeque <generic> {
     }
     public generic get(int index){
         if(size<index+1) return null;
-
+        // todo
         else {
             IntList iterator=getFirstNode().next;
             while(index>0){
