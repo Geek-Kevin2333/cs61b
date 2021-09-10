@@ -1,5 +1,5 @@
-public class LinkedListDeque <generic> {
-    public int size;
+public class LinkedListDeque<generic> implements Deque<generic>{
+    int size;
     public IntList sentinel;
 
     public class IntList{
@@ -34,7 +34,6 @@ public class LinkedListDeque <generic> {
     public IntList getLastNode(){
         return sentinel.prev;
     }
-
     public LinkedListDeque(){
         Integer defaultValue=-999;
         size=0;
@@ -56,7 +55,9 @@ public class LinkedListDeque <generic> {
         }
     }
 
-    public void addFirst(generic item){
+
+    @Override
+    public void addFirst(generic item) {
         size++;
         IntList temp=new IntList(item);
         temp.next=getFirstNode().next;
@@ -65,8 +66,8 @@ public class LinkedListDeque <generic> {
         temp.prev=getFirstNode();
     }
 
-    public generic getRecursive(int index){
-        // todo
+    @Override
+    public generic getRecursive(int index) {
         if(size<index+1) return null;
         return getRecursive(0,index,getFirstNode().next);
     }
@@ -76,7 +77,8 @@ public class LinkedListDeque <generic> {
         return getRecursive(pos+1,index,x.next);
     }
 
-    public void addLast(generic item){
+    @Override
+    public void addLast(generic item) {
         size++;
         IntList temp=new IntList((item));
         temp.next=getLastNode();
@@ -85,23 +87,15 @@ public class LinkedListDeque <generic> {
         getLastNode().prev=temp;
     }
 
-    public boolean isEmpty(){
-        if(size==0) return true;
-        return false;
-    }
-
-    public int size(){
-        return size;
-    }
-
-    public void printDeque(){
+    @Override
+    public void printDeque() {
         IntList beginning=getFirstNode().next;
         int toPrintSize=size;
         while(toPrintSize>0){
             if(toPrintSize!=1){
-            System.out.print(beginning.value);
-            toPrintSize--;
-            beginning=beginning.next;
+                System.out.print(beginning.value);
+                toPrintSize--;
+                beginning=beginning.next;
             }
             else {
                 System.out.println(beginning.value);
@@ -110,7 +104,8 @@ public class LinkedListDeque <generic> {
         }
     }
 
-    public generic removeFirst(){
+    @Override
+    public generic removeFirst() {
         if(size==0) return null;
         else {
             size--;
@@ -121,7 +116,8 @@ public class LinkedListDeque <generic> {
         }
     }
 
-    public generic removeLast(){
+    @Override
+    public generic removeLast() {
         if(size==0) return null;
         else {
             size--;
@@ -131,9 +127,11 @@ public class LinkedListDeque <generic> {
             return toRemove.value;
         }
     }
-    public generic get(int index){
+
+    @Override
+    public generic get(int index) {
         if(size<index+1) return null;
-        // todo
+            // todo
         else {
             IntList iterator=getFirstNode().next;
             while(index>0){
@@ -143,4 +141,5 @@ public class LinkedListDeque <generic> {
             return iterator.value;
         }
     }
-}
+    }
+
